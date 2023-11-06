@@ -9,11 +9,11 @@ test.describe('API-Likes', () => {
         // Click input[name="username"]
         await page.locator('input[name="username"]').click();
         // Fill input[name="username"]
-        await page.locator('input[name="username"]').fill('Test');
+        await page.locator('input[name="username"]').fill('Tavares_Barrows');
         // Click input[name="password"]
         await page.locator('input[name="password"]').click();
         // Fill input[name="password"]
-        await page.locator('input[name="password"]').fill('123456');
+        await page.locator('input[name="password"]').fill('s3cret');
         // Click [data-test="signin-submit"]
         await Promise.all([
             page.waitForNavigation(/*{ url: 'http://localhost:3000/' }*/),
