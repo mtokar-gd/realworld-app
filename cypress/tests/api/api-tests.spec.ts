@@ -27,6 +27,7 @@ describe('API Tests', () => {
             }})
             .then((response) =>{
                 expect(response.status).to.eq(200)
+                expect (response.body.data.listBankAccount[0].bankName).to.contain('Labadie Bank');
                 cy.log(JSON.stringify(response.body))
                 });
         
@@ -46,6 +47,7 @@ describe('API Tests', () => {
             }}})
             .then((response) =>{
                 expect(response.status).to.eq(200)
+                expect (response.body.data.deleteBankAccount).to.eq(true);
                 cy.log(JSON.stringify(response.body))
                 });       
     });
@@ -55,6 +57,8 @@ describe('API Tests', () => {
  })
             .then((response) =>{
                 expect(response.status).to.eq(200)
+                expect (response.body.user.firstName).to.eq('Edgar')
+                expect (response.body.user.lastName).to.eq('Johns')
                 });       
     });
 
@@ -65,6 +69,7 @@ describe('API Tests', () => {
             }})
             .then((response) =>{
                 expect(response.status).to.eq(200)
+                expect (response.body.user.username).to.eq('Tavares_Barrows');
                 cy.log(JSON.stringify(response.body))
                 });       
     });
@@ -81,6 +86,13 @@ describe('API Tests', () => {
             .then((response) =>{
                 expect(response.status).to.eq(200)
                 });       
+        cy.request({method: 'GET', url: 'http://localhost:3002/comments/183VHWyuQMS',
+        headers:{
+            'Cookie':cy.getCookie('connect.sid')
+        }})
+        .then((response) =>{
+            expect(response.body.comments[0].content).to.eq('Hooray')
+        })
     });
 
     it('Get a list of users performing tranactions', () => {
@@ -90,6 +102,7 @@ describe('API Tests', () => {
     }})
             .then((response) =>{
                 expect(response.status).to.eq(200)
+                expect (response.body.results[0].senderName).to.eq('Anna Jackson')
                 cy.log(JSON.stringify(response.body))
                 });       
     });
@@ -102,13 +115,9 @@ describe('API Tests', () => {
     }})
             .then((response) =>{
                 expect(response.status).to.eq(200)
+                expect (response.body.results[0].username).to.contain('Tavares_Barrows')
                 });       
     });
-
-
-
-
-
 
   });
   

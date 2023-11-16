@@ -19,6 +19,7 @@ it('should create new user', function () {
     cy.get('[id=password]').type('pwbest');
     cy.get('[id=confirmPassword]').type('pwbest');
     cy.get('[type="submit"]').click();
+    cy.contains('Sign in').should('be.visible');
   });
 
 })

@@ -53,6 +53,7 @@ beforeEach(() => {
     cy.contains('My Account').click();
     cy.get('[name="email"]').clear().type(newEmail);
     cy.contains('Save').click();
+    cy.get('input[name="email"]').should('have.value', newEmail);
    });
    
   
@@ -74,6 +75,7 @@ beforeEach(() => {
       .filter(':contains("Deutsche Bank")')
       .contains('Delete')
       .click();
+    cy.contains('Deutsche Bank').should('contain.text', '(Deleted)');
    });
 
 
